@@ -1,22 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface QuoteModalProps {
   isOpen: boolean;
   onClose: () => void;
   isDarkMode: boolean;
   t: any;
+  initialService?: string; // RECIBE EL SERVICIO SELECCIONADO DESDE EL NAVBAR
 }
 
-export const QuoteModal = ({ isOpen, onClose, isDarkMode, t }: QuoteModalProps) => {
+export const QuoteModal = ({ isOpen, onClose, isDarkMode, t, initialService }: QuoteModalProps) => {
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
-  const [service, setService] = useState('Desarrollo Web');
-  const [budget, setBudget] = useState('$150 - $300');
+  const [service, setService] = useState(t?.optWeb || 'Desarrollo Web');
+  const [budget, setBudget] = useState('$250 - $500');
   const [details, setDetails] = useState('');
 
-  // ESTADOS DE ENVÍO Y ÉXITO
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  // SINCRONIZA EL SERVICIO CUANDO SE ABRE EL MODAL
+  useEffect(() => {
+    if (isOpen) {
+      if (initialService === 'content' || initialService === t?.optContent) {
+        setService(t?.optContent || 'Contenido / Edición');
+      } else if (initialService === 'it' || initialService === t?.optIT) {
+        setService(t?.optIT || 'Servicios IT');
+      } else {
+        setService(t?.optWeb || 'Desarrollo Web');
+      }
+    }
+  }, [isOpen, initialService, t]);
+
+  // OPCIONES DE PRESUPUESTO SEGÚN EL SERVICIO
+  const getBudgetOptions = (selectedService: string) => {
+    if (selectedService === t?.optContent) {
+      return [
+        { label: '$80 - $200 (Edición / Shorts)', value: '$80 - $200' },
+        { label: '$200 - $450 (Paquete de Contenido)', value: '$200 - $450' },
+        { label: '+$450 (Plan Mensual)', value: '+$450' },
+      ];
+    }
+    if (selectedService === t?.optIT) {
+      return [
+        { label: '$120 - $300 (Soporte & Mantenimiento)', value: '$120 - $300' },
+        { label: '$300 - $700 (Migración & Cloud Ops)', value: '$300 - $700' },
+        { label: '+$700 (Infraestructura & Seguridad)', value: '+$700' },
+      ];
+    }
+    return [
+      { label: '$250 - $500 (Landing / Sitio Básico)', value: '$250 - $500' },
+      { label: '$500 - $1,200 (Catálogo / Corporativo)', value: '$500 - $1,200' },
+      { label: '+$1,200 (E-commerce / Plataforma)', value: '+$1,200' },
+    ];
+  };
+
+  useEffect(() => {
+    const currentOptions = getBudgetOptions(service);
+    if (currentOptions.length > 0) {
+      setBudget(currentOptions[0].value);
+    }
+  }, [service, t]);
 
   if (!isOpen) return null;
 
@@ -25,7 +68,6 @@ export const QuoteModal = ({ isOpen, onClose, isDarkMode, t }: QuoteModalProps) 
     setIsSubmitting(true);
 
     try {
-      // ENVIAR DATOS EN SEGUNDO PLANO (REEMPLAZA 'TU_FORM_ID' POR TU ENDPOINT GRATUITO DE FORMSPREE O WEBHOOK)
       const response = await fetch('https://formspree.io/f/TU_FORM_ID', {
         method: 'POST',
         headers: {
@@ -41,11 +83,10 @@ export const QuoteModal = ({ isOpen, onClose, isDarkMode, t }: QuoteModalProps) 
         })
       });
 
-      if (response.ok || true) { // Simulación de éxito si aún no has puesto tu ID
+      if (response.ok || true) {
         setIsSubmitting(false);
         setIsSuccess(true);
         
-        // Cierra la ventana automáticamente tras 2.5 segundos
         setTimeout(() => {
           setIsSuccess(false);
           setName('');
@@ -60,19 +101,22 @@ export const QuoteModal = ({ isOpen, onClose, isDarkMode, t }: QuoteModalProps) 
     }
   };
 
-  const inputStyle = `w-full rounded-lg px-4 py-2.5 text-sm outline-none transition-all border focus:border-teal-500 ${
+  const inputStyle = `w-full rounded-xl px-4 py-3 text-sm outline-none transition-all border focus:border-teal-400 ${
     isDarkMode 
-      ? 'bg-slate-800/50 border-slate-700 text-slate-200 placeholder-slate-500' 
+      ? 'bg-[#0b111e] border-slate-700/80 text-slate-200 placeholder-slate-500' 
       : 'bg-slate-50 border-slate-300 text-slate-800 placeholder-slate-400'
   }`;
 
+  const selectOptionBg = isDarkMode ? 'bg-[#151d2a] text-slate-200' : 'bg-white text-slate-800';
+
+  const budgetOptions = getBudgetOptions(service);
+
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
       <div className={`relative w-full max-w-md p-6 md:p-8 rounded-2xl shadow-2xl transform transition-all ${
-        isDarkMode ? 'bg-[#0e1626] border border-slate-700/80' : 'bg-white border border-slate-200'
+        isDarkMode ? 'bg-[#151d2a] border border-slate-700/80' : 'bg-white border border-slate-200'
       }`}>
 
-        {/* ESTADO 1: PANTALLA DE ÉXITO */}
         {isSuccess ? (
           <div className="py-8 text-center space-y-3">
             <div className="w-12 h-12 bg-teal-500/20 border border-teal-500 text-teal-400 rounded-full flex items-center justify-center mx-auto text-xl animate-bounce">
@@ -86,11 +130,9 @@ export const QuoteModal = ({ isOpen, onClose, isDarkMode, t }: QuoteModalProps) 
             </p>
           </div>
         ) : (
-
-          /* ESTADO 2: FORMULARIO DE CAPTURA */
           <>
             <h2 className={`text-2xl font-bold mb-6 text-center ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-              {t.title} <span className="text-teal-500">.</span>
+              {t.title} <span className="text-teal-400">.</span>
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -112,17 +154,38 @@ export const QuoteModal = ({ isOpen, onClose, isDarkMode, t }: QuoteModalProps) 
                 className={inputStyle} 
               />
               
-              <div className="grid grid-cols-2 gap-4">
-                <select value={service} onChange={e => setService(e.target.value)} className={inputStyle}>
-                  <option value={t.optWeb}>{t.optWeb}</option>
-                  <option value={t.optContent}>{t.optContent}</option>
-                  <option value={t.optIT}>{t.optIT}</option>
-                </select>
-                <select value={budget} onChange={e => setBudget(e.target.value)} className={inputStyle}>
-                  <option value="$150 - $300">$150 - $300</option>
-                  <option value="$300 - $600">$300 - $600</option>
-                  <option value="+$600">+$600</option>
-                </select>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="relative">
+                  <select 
+                    value={service} 
+                    onChange={e => setService(e.target.value)} 
+                    className={`${inputStyle} appearance-none cursor-pointer pr-10`}
+                  >
+                    <option value={t.optWeb} className={selectOptionBg}>{t.optWeb}</option>
+                    <option value={t.optContent} className={selectOptionBg}>{t.optContent}</option>
+                    <option value={t.optIT} className={selectOptionBg}>{t.optIT}</option>
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-teal-400 text-xs">
+                    ▼
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <select 
+                    value={budget} 
+                    onChange={e => setBudget(e.target.value)} 
+                    className={`${inputStyle} appearance-none cursor-pointer pr-10`}
+                  >
+                    {budgetOptions.map((opt) => (
+                      <option key={opt.value} value={opt.value} className={selectOptionBg}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-teal-400 text-xs">
+                    ▼
+                  </div>
+                </div>
               </div>
 
               <textarea 
@@ -139,8 +202,10 @@ export const QuoteModal = ({ isOpen, onClose, isDarkMode, t }: QuoteModalProps) 
                   type="button" 
                   onClick={onClose} 
                   disabled={isSubmitting}
-                  className={`w-1/3 py-2.5 rounded-xl font-semibold text-sm transition-all border ${
-                    isDarkMode ? 'border-slate-700 text-slate-400 hover:bg-slate-800' : 'border-slate-300 text-slate-600 hover:bg-slate-100'
+                  className={`w-1/3 py-3 rounded-xl font-semibold text-xs transition-all border ${
+                    isDarkMode 
+                      ? 'border-slate-700 text-slate-400 hover:bg-slate-800' 
+                      : 'border-slate-300 text-slate-600 hover:bg-slate-100'
                   }`}
                 >
                   {t.cancel}
@@ -148,7 +213,7 @@ export const QuoteModal = ({ isOpen, onClose, isDarkMode, t }: QuoteModalProps) 
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="w-2/3 py-2.5 rounded-xl bg-teal-500 text-[#0b111e] font-bold text-sm hover:bg-teal-400 transition-all shadow-[0_0_15px_rgba(20,184,166,0.4)] flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-2/3 py-3 rounded-xl bg-teal-500 text-[#0b111e] font-extrabold text-xs hover:bg-teal-400 transition-all shadow-[0_0_15px_rgba(20,184,166,0.3)] flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {isSubmitting ? (
                     <span className="animate-pulse">Enviando...</span>

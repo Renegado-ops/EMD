@@ -1,81 +1,94 @@
 interface AboutSectionProps {
-  isDarkMode: boolean;
-  t: {
-    tag: string;
-    title: string;
-    description1: string;
-    description2: string;
-    pillar1: string;
-    pillar1Desc: string;
-    pillar2: string;
-    pillar2Desc: string;
-    pillar3: string;
-    pillar3Desc: string;
-  };
+  isDarkMode?: boolean;
+  t?: any;
 }
 
-export const AboutSection = ({ isDarkMode, t }: AboutSectionProps) => {
+export const AboutSection = ({ isDarkMode = true, t }: AboutSectionProps) => {
+  const defaultFeatures = [
+    {
+      id: 'engineering',
+      title: 'Ingeniería a Medida',
+      desc: 'No usamos plantillas lentas. Desarrollamos desde cero para garantizar velocidad extrema y seguridad.',
+      icon: (
+        <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+      ),
+    },
+    {
+      id: 'design',
+      title: 'Diseño Funcional',
+      desc: 'Estética minimalista orientada a la conversión de clientes y una experiencia de usuario (UX/UI) fluida.',
+      icon: (
+        <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+        </svg>
+      ),
+    },
+    {
+      id: 'support',
+      title: 'Soporte Continuo',
+      desc: 'Acompañamiento técnico constante. Tu plataforma siempre en línea, protegida y optimizada.',
+      icon: (
+        <svg className="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+      ),
+    },
+  ];
+
   return (
-    <section id="about" className="py-12 border-t border-slate-800/40 scroll-mt-24">
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
-        
-        {/* COLUMNA IZQUIERDA: Textos de persuasión */}
-        <div className="flex-1 w-full">
-          <span className="text-teal-500 font-mono text-xs uppercase tracking-widest block font-bold mb-3">
-            // {t.tag}
-          </span>
-          <h2 className={`text-3xl md:text-4xl font-bold tracking-tight mb-6 leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-            {t.title}
-          </h2>
-          
-          <div className={`space-y-4 text-sm leading-relaxed border-l-2 border-teal-500 pl-4 ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-            <p>{t.description1}</p>
-            <p>{t.description2}</p>
+    <section id="nosotros" className="py-20 px-6 max-w-7xl mx-auto border-t border-slate-800/60">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* COLUMNA IZQUIERDA: MENSAJE PRINCIPAL DE LA AGENCIA */}
+        <div className="lg:col-span-6 space-y-6">
+          <div className="border-l-2 border-teal-500 pl-4">
+            <span className="text-teal-400 font-mono text-xs uppercase tracking-widest block font-bold mb-1">
+              // IDENTIDAD CORPORATIVA
+            </span>
+            <h2 className={`text-3xl md:text-5xl font-black tracking-tight leading-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
+              Tu aliado tecnológico <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-sky-300 to-indigo-400">
+                estratégico.
+              </span>
+            </h2>
           </div>
+
+          <p className={`text-sm md:text-base leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+            Creemos que la tecnología debe ser un motor de crecimiento, no un dolor de cabeza. EMD nace con la visión de ofrecer soluciones digitales de nivel ejecutivo a empresas y emprendedores que buscan escalar su presencia en internet sin complicaciones.
+          </p>
+
+          <p className={`text-xs md:text-sm leading-relaxed ${isDarkMode ? 'text-slate-500' : 'text-slate-600'}`}>
+            Nos encargamos de la arquitectura del código, la infraestructura de servidores y la estética visual. Tú pones la visión de negocio, nosotros construimos el ecosistema para hacerlo realidad.
+          </p>
         </div>
 
-        {/* COLUMNA DERECHA: Los 3 Pilares (Grilla de valores) */}
-        <div className="flex-1 w-full grid gap-4">
-          
-          {/* Pilar 1 */}
-          <div className={`p-5 rounded-2xl border transition-all hover:-translate-y-1 ${
-            isDarkMode ? 'bg-slate-800/30 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
-          }`}>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-500">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+        {/* COLUMNA DERECHA: TARJETAS DE PROPUESTA DE VALOR */}
+        <div className="lg:col-span-6 space-y-4">
+          {defaultFeatures.map((feat) => (
+            <div
+              key={feat.id}
+              className={`p-5 rounded-2xl border transition-all duration-300 group flex items-start gap-4 ${
+                isDarkMode
+                  ? 'bg-[#151d2a]/80 border-slate-700/60 hover:border-teal-400/50 hover:bg-[#151d2a]'
+                  : 'bg-white border-slate-200 hover:border-teal-600 shadow-sm'
+              }`}
+            >
+              <div className="p-3 bg-[#0b111e] border border-slate-700/80 rounded-xl group-hover:border-teal-500/50 transition-colors shrink-0">
+                {feat.icon}
               </div>
-              <h3 className={`font-bold ${isDarkMode ? 'text-slate-200' : 'text-slate-800'}`}>{t.pillar1}</h3>
-            </div>
-            <p className={`text-xs pl-11 ${isDarkMode ? 'text-slate-500' : 'text-slate-500'}`}>{t.pillar1Desc}</p>
-          </div>
-
-          {/* Pilar 2 */}
-          <div className={`p-5 rounded-2xl border transition-all hover:-translate-y-1 ${
-            isDarkMode ? 'bg-slate-800/30 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
-          }`}>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-500">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>
+              <div>
+                <h3 className={`text-base font-bold mb-1 group-hover:text-teal-400 transition-colors ${
+                  isDarkMode ? 'text-white' : 'text-slate-900'
+                }`}>
+                  {feat.title}
+                </h3>
+                <p className={`text-xs leading-relaxed ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                  {feat.desc}
+                </p>
               </div>
-              <h3 className={`font-bold ${isDarkMode ? 'text-slate-200' : 'text-slate-800'}`}>{t.pillar2}</h3>
             </div>
-            <p className={`text-xs pl-11 ${isDarkMode ? 'text-slate-500' : 'text-slate-500'}`}>{t.pillar2Desc}</p>
-          </div>
-
-          {/* Pilar 3 */}
-          <div className={`p-5 rounded-2xl border transition-all hover:-translate-y-1 ${
-            isDarkMode ? 'bg-slate-800/30 border-slate-700/60' : 'bg-white border-slate-200 shadow-sm'
-          }`}>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-8 h-8 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-500">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-              </div>
-              <h3 className={`font-bold ${isDarkMode ? 'text-slate-200' : 'text-slate-800'}`}>{t.pillar3}</h3>
-            </div>
-            <p className={`text-xs pl-11 ${isDarkMode ? 'text-slate-500' : 'text-slate-500'}`}>{t.pillar3Desc}</p>
-          </div>
-
+          ))}
         </div>
       </div>
     </section>

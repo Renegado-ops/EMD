@@ -1,3 +1,4 @@
+import React from 'react';
 import { Logo } from './Logo';
 import type { Language } from '../utils/translations';
 
@@ -28,23 +29,24 @@ export const Footer = ({ isDarkMode, onToggleDarkMode, language, onLanguageChang
   };
 
   return (
-    <footer className={`border-t transition-colors duration-300 pt-10 pb-6 px-8 text-xs relative ${
+    <footer className={`border-t transition-colors duration-300 pt-12 pb-8 px-5 md:px-8 text-xs relative ${
       isDarkMode 
         ? 'border-slate-800/80 bg-[#070c16] text-slate-400' 
         : 'border-slate-300 bg-[#d8dfe8] text-slate-700'
     }`}>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 mb-8">
+      {/* CAMBIO AQUÍ: max-w-6xl en lugar de 7xl */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 mb-10">
         
         {/* MARCA E INFO */}
         <div className="md:col-span-1 space-y-3">
           <a href="#top" onClick={scrollToTop} className="inline-block cursor-pointer hover:opacity-90 transition-opacity">
             <Logo className="w-32 h-auto" isDarkMode={isDarkMode} />
           </a>
-          <div className="space-y-1 text-[11px] pt-1">
-            <p className={`flex items-center gap-1.5 ${isDarkMode ? 'text-slate-300' : 'text-slate-800'}`}>
+          <div className="space-y-1.5 text-[11px] pt-1">
+            <p className={`flex items-center gap-1.5 transition-colors ${isDarkMode ? 'text-slate-300 hover:text-teal-400' : 'text-slate-800 hover:text-teal-600'}`}>
               <span className="text-teal-500 font-bold">✉</span> info@emd.pro
             </p>
-            <p className={`flex items-center gap-1.5 ${isDarkMode ? 'text-slate-300' : 'text-slate-800'}`}>
+            <p className={`flex items-center gap-1.5 transition-colors ${isDarkMode ? 'text-slate-300 hover:text-teal-400' : 'text-slate-800 hover:text-teal-600'}`}>
               <span className="text-teal-500 font-bold">📞</span> +1 809 123 4567
             </p>
           </div>
@@ -64,47 +66,55 @@ export const Footer = ({ isDarkMode, onToggleDarkMode, language, onLanguageChang
 
         {/* ENLACES SERVICIOS */}
         <div>
-          <h5 className={`font-bold mb-3 text-sm ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{t.services}</h5>
+          <h5 className={`font-bold mb-3 text-sm tracking-wide ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{t.services}</h5>
           <ul className="space-y-2 text-[11px]">
-            <li><a href="#contenido" className="hover:text-teal-500 transition">Creación de Contenido</a></li>
-            <li><a href="#desarrollo-web" className="hover:text-teal-500 transition">Desarrollo Web</a></li>
-            <li><a href="#servicios-it" className="hover:text-teal-500 transition">Servicios IT</a></li>
+            <li><a href="#servicios" className="hover:text-teal-400 transition-colors">Creación de Contenido</a></li>
+            <li><a href="#servicios" className="hover:text-teal-400 transition-colors">Desarrollo Web</a></li>
+            <li><a href="#servicios" className="hover:text-teal-400 transition-colors">Servicios IT</a></li>
           </ul>
         </div>
 
         {/* ENLACES INFORMACIÓN */}
         <div>
-          <h5 className={`font-bold mb-3 text-sm ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{t.information}</h5>
+          <h5 className={`font-bold mb-3 text-sm tracking-wide ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{t.information}</h5>
           <ul className="space-y-2 text-[11px]">
-            <li><a href="#about" className="hover:text-teal-500 transition">{t.aboutUs}</a></li>
-            <li><a href="#portafolio" className="hover:text-teal-500 transition">Portafolio</a></li>
+            <li><a href="#nosotros" className="hover:text-teal-400 transition-colors">{t.aboutUs}</a></li>
+            <li><a href="#portafolio" className="hover:text-teal-400 transition-colors">Portafolio</a></li>
           </ul>
         </div>
 
         {/* ENLACES LEGAL */}
         <div>
-          <h5 className={`font-bold mb-3 text-sm ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{t.legal}</h5>
+          <h5 className={`font-bold mb-3 text-sm tracking-wide ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{t.legal}</h5>
           <ul className="space-y-2 text-[11px]">
-            <li><a href="#privacy" className="hover:text-teal-500 transition">{t.privacy}</a></li>
-            <li><a href="#terms" className="hover:text-teal-500 transition">{t.terms}</a></li>
+            <li><a href="#" className="hover:text-teal-400 transition-colors">{t.privacy}</a></li>
+            <li><a href="#" className="hover:text-teal-400 transition-colors">{t.terms}</a></li>
           </ul>
         </div>
 
         {/* SELECTOR DE IDIOMA E INTERRUPTOR */}
-        <div className="space-y-4">
+        <div className="space-y-5">
           <div>
-            <h5 className={`font-bold mb-2 text-sm ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{t.language}</h5>
-            <select 
-              value={language}
-              onChange={(e) => onLanguageChange(e.target.value as Language)}
-              className={`border rounded-lg px-3 py-1.5 w-full text-xs outline-none cursor-pointer ${
-                isDarkMode ? 'bg-slate-800/80 border-slate-700 text-slate-200' : 'bg-[#e2e8f0] border-slate-400 text-slate-800'
-              }`}
-            >
-              <option value="es">🇪🇸 Español ES</option>
-              <option value="en">🇺🇸 English US</option>
-              <option value="fr">🇫🇷 Français FR</option>
-            </select>
+            <h5 className={`font-bold mb-2 text-sm tracking-wide ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>{t.language}</h5>
+            
+            <div className="relative">
+              <select 
+                value={language}
+                onChange={(e) => onLanguageChange(e.target.value as Language)}
+                className={`border rounded-xl px-3 py-2 w-full text-xs outline-none cursor-pointer appearance-none pr-8 transition-colors ${
+                  isDarkMode 
+                    ? 'bg-[#151d2a] border-slate-700/80 text-slate-200 focus:border-teal-400' 
+                    : 'bg-white border-slate-300 text-slate-800 focus:border-teal-600'
+                }`}
+              >
+                <option value="es" className={isDarkMode ? 'bg-[#151d2a] text-slate-200' : 'bg-white text-slate-800'}>🇪🇸 Español ES</option>
+                <option value="en" className={isDarkMode ? 'bg-[#151d2a] text-slate-200' : 'bg-white text-slate-800'}>🇺🇸 English US</option>
+                <option value="fr" className={isDarkMode ? 'bg-[#151d2a] text-slate-200' : 'bg-white text-slate-800'}>🇫🇷 Français FR</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-teal-400 text-[10px]">
+                ▼
+              </div>
+            </div>
           </div>
 
           <div className="flex items-center justify-between pt-1 select-none">
@@ -113,11 +123,11 @@ export const Footer = ({ isDarkMode, onToggleDarkMode, language, onLanguageChang
             </span>
             <button 
               onClick={onToggleDarkMode}
-              className={`w-10 h-5 rounded-full relative transition-colors duration-300 p-0.5 outline-none ${
-                isDarkMode ? 'bg-teal-400' : 'bg-slate-400'
+              className={`w-11 h-6 rounded-full relative transition-colors duration-300 p-0.5 outline-none cursor-pointer ${
+                isDarkMode ? 'bg-teal-400 shadow-[0_0_10px_rgba(45,212,191,0.3)]' : 'bg-slate-400'
               }`}
             >
-              <div className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
+              <div className={`w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
                 isDarkMode ? 'translate-x-5' : 'translate-x-0'
               }`} />
             </button>
@@ -126,7 +136,9 @@ export const Footer = ({ isDarkMode, onToggleDarkMode, language, onLanguageChang
 
       </div>
 
-      <div className="max-w-7xl mx-auto border-t border-slate-400/40 pt-4 text-center text-[10px] text-slate-500">
+      <div className={`max-w-6xl mx-auto border-t pt-5 text-center text-[10px] font-mono ${
+        isDarkMode ? 'border-slate-800/80 text-slate-500' : 'border-slate-300/80 text-slate-600'
+      }`}>
         &copy; 2026 {t.rights}
       </div>
     </footer>
