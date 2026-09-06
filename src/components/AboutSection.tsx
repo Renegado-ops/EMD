@@ -3,7 +3,7 @@ interface AboutSectionProps {
   t?: any;
 }
 
-export const AboutSection = ({ isDarkMode = true, t }: AboutSectionProps) => {
+export const AboutSection = ({ isDarkMode = true, t: _t }: AboutSectionProps) => {
   const defaultFeatures = [
     {
       id: 'engineering',
