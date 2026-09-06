@@ -1,9 +1,12 @@
+import React from 'react';
+
 interface AboutSectionProps {
   isDarkMode?: boolean;
-  t?: any;
+  t?: any; // Lo dejamos en la interfaz por si el App.tsx lo envía, para que no dé error de firma
 }
 
-export const AboutSection = ({ isDarkMode = true, t: _t }: AboutSectionProps) => {
+// AQUÍ ESTÁ LA MAGIA: Quitamos `t: _t` de los parámetros recibidos.
+export const AboutSection = ({ isDarkMode = true }: AboutSectionProps) => {
   const defaultFeatures = [
     {
       id: 'engineering',
@@ -38,7 +41,10 @@ export const AboutSection = ({ isDarkMode = true, t: _t }: AboutSectionProps) =>
   ];
 
   return (
-    <section id="nosotros" className="py-20 px-6 max-w-7xl mx-auto border-t border-slate-800/60">
+    // NOTA: Quité los paddings excesivos (py-20 px-6 max-w-7xl mx-auto) 
+    // porque en el App.tsx este componente ya está envuelto en un recuadro 
+    // de vidrio (glassmorphism) que le da su propia estructura.
+    <section id="nosotros" className="w-full">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         {/* COLUMNA IZQUIERDA: MENSAJE PRINCIPAL DE LA AGENCIA */}
         <div className="lg:col-span-6 space-y-6">
