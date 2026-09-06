@@ -70,7 +70,7 @@ export function App() {
               ? 'bg-[#182335]/90 border-slate-700/80 shadow-2xl shadow-black/40' 
               : 'bg-white/90 border-slate-300 shadow-sm'
           }`}>
-            {/* LÍNEA NEÓN SUPERIOR INSET (NO TOCAR ESQUINAS PARA EVITAR BUG BORDER) */}
+            {/* LÍNEA NEÓN SUPERIOR INSET */}
             {isDarkMode && (
               <div className="absolute top-0 left-10 right-10 h-[2px] bg-gradient-to-r from-transparent via-teal-400 to-transparent opacity-80 pointer-events-none" />
             )}
@@ -157,7 +157,6 @@ export function App() {
             )}
             <AboutSection 
               isDarkMode={isDarkMode} 
-              t={t.aboutSection} 
             />
           </div>
         </section>

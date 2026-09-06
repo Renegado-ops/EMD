@@ -2,7 +2,6 @@ import React from 'react';
 
 interface AboutSectionProps {
   isDarkMode?: boolean;
-  t?: any; 
 }
 
 export const AboutSection = ({ isDarkMode = true }: AboutSectionProps) => {
