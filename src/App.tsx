@@ -31,10 +31,9 @@ export function App() {
       isDarkMode ? 'bg-[#0f172a] text-slate-200' : 'bg-[#e2e8f0] text-slate-800'
     }`}>
       
-      {/* MALLA DE PUNTOS TECH & LUCES AMBIENTALES SIMÉTRICAS */}
+      {/* MALLA DE PUNTOS TECH & LUCES AMBIENTALES */}
       {isDarkMode && (
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-          {/* Malla de Puntos (Dot Grid) */}
           <div 
             className="absolute inset-0 opacity-[0.35]" 
             style={{
@@ -43,8 +42,6 @@ export function App() {
               maskImage: 'radial-gradient(ellipse 90% 90% at 50% 20%, black 60%, transparent 100%)'
             }}
           />
-
-          {/* Luces Ambientales Balanceadas */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-teal-500/18 blur-[150px] rounded-full" />
           <div className="absolute top-[350px] -left-20 w-[450px] h-[450px] bg-teal-400/12 blur-[140px] rounded-full" />
           <div className="absolute top-[350px] -right-20 w-[450px] h-[450px] bg-teal-400/12 blur-[140px] rounded-full" />
@@ -70,51 +67,45 @@ export function App() {
               ? 'bg-[#182335]/90 border-slate-700/80 shadow-2xl shadow-black/40' 
               : 'bg-white/90 border-slate-300 shadow-sm'
           }`}>
-            {/* LÍNEA NEÓN SUPERIOR INSET */}
             {isDarkMode && (
               <div className="absolute top-0 left-10 right-10 h-[2px] bg-gradient-to-r from-transparent via-teal-400 to-transparent opacity-80 pointer-events-none" />
             )}
 
             <div className="mb-8 border-l-2 border-teal-500 pl-4">
               <span className="text-teal-400 font-mono text-xs uppercase tracking-widest block font-bold mb-1">
-                // NUESTROS SERVICIOS
+                // {t.nav.services.toUpperCase()}
               </span>
               <h1 className={`text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight ${
                 isDarkMode ? 'text-white' : 'text-slate-900'
               }`}>
-                Soluciones digitales de alto rendimiento
-              </h1>
-              <p className={`text-xs md:text-sm mt-2 max-w-2xl ${
-                isDarkMode ? 'text-slate-300' : 'text-slate-600'
-              }`}>
                 {t.hero.subtitle}
-              </p>
+              </h1>
             </div>
 
-            {/* GRID DE SERVICIOS + WIDGET */}
+            {/* GRID DE SERVICIOS */}
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-stretch">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 flex-grow w-full">
                 <ServiceCard 
                   type="app"
-                  title="Desarrollo Web & Software"
-                  description="Páginas corporativas, tiendas online y plataformas web a medida optimizadas para conversión."
-                  buttonText="Solicitar Cotización"
+                  title={t.cards.appTitle}
+                  description={t.cards.appDesc}
+                  buttonText={t.cards.learnMore}
                   isDarkMode={isDarkMode}
                   onClick={() => handleOpenModal('web')}
                 />
                 <ServiceCard 
                   type="seo"
-                  title="Edición & Contenido Digital"
-                  description="Edición de video profesional, contenido para redes sociales y piezas publicitarias de alto impacto."
-                  buttonText="Solicitar Cotización"
+                  title={t.cards.seoTitle}
+                  description={t.cards.seoDesc}
+                  buttonText={t.cards.learnMore}
                   isDarkMode={isDarkMode}
                   onClick={() => handleOpenModal('content')}
                 />
                 <ServiceCard 
                   type="hosting"
-                  title="Infraestructura & Cloud IT"
-                  description="Alojamiento ultrarrápido en la nube, optimización SEO técnica y mantenimiento continuo de tu sistema."
-                  buttonText="Solicitar Cotización"
+                  title={t.cards.hostingTitle}
+                  description={t.cards.hostingDesc}
+                  buttonText={t.cards.learnMore}
                   isDarkMode={isDarkMode}
                   onClick={() => handleOpenModal('it')}
                 />
@@ -122,7 +113,7 @@ export function App() {
 
               {/* WIDGET DE MÉTRICAS */}
               <aside className="w-full lg:w-[280px] shrink-0">
-                <SystemMetricsWidget isDarkMode={isDarkMode} />
+                <SystemMetricsWidget isDarkMode={isDarkMode} t={t} />
               </aside>
             </div>
           </div>
@@ -157,6 +148,7 @@ export function App() {
             )}
             <AboutSection 
               isDarkMode={isDarkMode} 
+              t={t.aboutSection}
             />
           </div>
         </section>

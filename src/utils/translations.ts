@@ -26,11 +26,6 @@ export const translations = {
       seoDesc: 'Estrategias personalizadas para maximizar tu visibilidad online.',
       learnMore: 'Saber Más',
     },
-    sidebar: {
-      filters: 'Filtros',
-      category: 'Categoría',
-      location: 'Ubicación',
-    },
     footer: {
       missionLabel: 'MISIÓN',
       mission: 'Impulsamos el crecimiento de marcas y empresas mediante soluciones tecnológicas de alto rendimiento, ingeniería web a medida y producción digital de nivel global.',
@@ -74,7 +69,8 @@ export const translations = {
     },
     aboutSection: {
       tag: 'Identidad Corporativa',
-      title: 'Tu aliado tecnológico estratégico.',
+      title1: 'Tu aliado tecnológico',
+      titleHighlight: 'estratégico.',
       description1: 'Creemos que la tecnología debe ser un motor de crecimiento, no un dolor de cabeza. EMD nace con la visión de ofrecer soluciones digitales de nivel ejecutivo a empresas y emprendedores que buscan escalar su presencia en internet sin complicaciones.',
       description2: 'Nos encargamos de la arquitectura del código, la infraestructura de servidores y la estética visual. Tú pones la visión de negocio, nosotros construimos el ecosistema para hacerlo realidad.',
       pillar1: 'Ingeniería a Medida',
@@ -109,11 +105,6 @@ export const translations = {
       seoTitle: 'Optimization & Advanced SEO',
       seoDesc: 'Custom strategies to maximize your online visibility.',
       learnMore: 'Learn More',
-    },
-    sidebar: {
-      filters: 'Filters',
-      category: 'Category',
-      location: 'Location',
     },
     footer: {
       missionLabel: 'MISSION',
@@ -158,7 +149,8 @@ export const translations = {
     },
     aboutSection: {
       tag: 'Corporate Identity',
-      title: 'Your strategic technology partner.',
+      title1: 'Your strategic',
+      titleHighlight: 'technology partner.',
       description1: 'We believe technology should be an engine for growth, not a headache. EMD was founded with the vision of offering executive-level digital solutions to businesses and entrepreneurs looking to scale their online presence seamlessly.',
       description2: 'We handle code architecture, server infrastructure, and visual aesthetics. You provide the business vision, and we build the ecosystem to make it a reality.',
       pillar1: 'Custom Engineering',
@@ -193,11 +185,6 @@ export const translations = {
       seoTitle: 'Optimisation & SEO Avancé',
       seoDesc: 'Stratégies personnalisées pour maximiser votre visibilité en ligne.',
       learnMore: 'En Savoir Plus',
-    },
-    sidebar: {
-      filters: 'Filtres',
-      category: 'Catégorie',
-      location: 'Localisation',
     },
     footer: {
       missionLabel: 'MISSION',
@@ -242,7 +229,8 @@ export const translations = {
     },
     aboutSection: {
       tag: 'Identité d\'Entreprise',
-      title: 'Votre partenaire technologique.',
+      title1: 'Votre partenaire',
+      titleHighlight: 'technologique stratégique.',
       description1: 'Nous pensons que la technologie doit être un moteur de croissance, pas un casse-tête. EMD a été fondé pour offrir des solutions numériques de haut niveau aux entreprises et entrepreneurs souhaitant évoluer en ligne sans tracas.',
       description2: 'Nous gérons l\'architecture du code, l\'infrastructure des serveurs et l\'esthétique. Vous apportez la vision, nous construisons l\'écosystème pour la réaliser.',
       pillar1: 'Ingénierie sur Mesure',
