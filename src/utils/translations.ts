@@ -46,11 +46,26 @@ export const translations = {
       service: '¿Qué servicio buscas?',
       budget: 'Presupuesto estimado',
       details: 'Detalles del proyecto...',
-      send: 'Enviar a WhatsApp',
+      send: 'Enviar Solicitud',
       cancel: 'Cancelar',
       optWeb: 'Desarrollo Web',
       optContent: 'Contenido / Edición',
-      optIT: 'Servicios IT'
+      optIT: 'Servicios IT',
+      webBudgets: [
+        '$250 - $500 (Landing / Sitio Básico)',
+        '$500 - $1,200 (Catálogo / Corporativo)',
+        '+$1,200 (E-commerce / Plataforma)'
+      ],
+      contentBudgets: [
+        '$150 - $350 (Edición Básica / Reels)',
+        '$350 - $800 (Pack Mensual Contenido)',
+        '+$800 (Producción / Campaña Completa)'
+      ],
+      itBudgets: [
+        '$200 - $450 (Hosting & Dominio)',
+        '$450 - $900 (Mantenimiento & SEO)',
+        '+$900 (Infraestructura Cloud / Servidores)'
+      ]
     },
     portfolioSection: {
       title: 'Portafolio de Proyectos',
@@ -126,11 +141,26 @@ export const translations = {
       service: 'Service required?',
       budget: 'Estimated Budget',
       details: 'Project details...',
-      send: 'Send via WhatsApp',
+      send: 'Send Request',
       cancel: 'Cancel',
       optWeb: 'Web Development',
       optContent: 'Content Creation',
-      optIT: 'IT Services'
+      optIT: 'IT Services',
+      webBudgets: [
+        '$250 - $500 (Landing / Basic Site)',
+        '$500 - $1,200 (Catalog / Corporate)',
+        '+$1,200 (E-commerce / Platform)'
+      ],
+      contentBudgets: [
+        '$150 - $350 (Basic Editing / Reels)',
+        '$350 - $800 (Monthly Content Pack)',
+        '+$800 (Full Production / Campaign)'
+      ],
+      itBudgets: [
+        '$200 - $450 (Hosting & Domain)',
+        '$450 - $900 (Maintenance & SEO)',
+        '+$900 (Cloud Infrastructure / Servers)'
+      ]
     },
     portfolioSection: {
       title: 'Project Portfolio',
@@ -206,11 +236,26 @@ export const translations = {
       service: 'Service requis ?',
       budget: 'Budget estimé',
       details: 'Détails du projet...',
-      send: 'Envoyer sur WhatsApp',
+      send: 'Envoyer la Demande',
       cancel: 'Annuler',
       optWeb: 'Développement Web',
       optContent: 'Création de Contenu',
-      optIT: 'Services Informatiques'
+      optIT: 'Services Informatiques',
+      webBudgets: [
+        '250$ - 500$ (Landing / Site De Base)',
+        '500$ - 1 200$ (Catalogue / Corporate)',
+        '+1 200$ (E-commerce / Plateforme)'
+      ],
+      contentBudgets: [
+        '150$ - 350$ (Montage de Base / Reels)',
+        '350$ - 800$ (Pack Contenu Mensuel)',
+        '+800$ (Production Complète)'
+      ],
+      itBudgets: [
+        '200$ - 450$ (Hébergement & Domaine)',
+        '450$ - 900$ (Maintenance & SEO)',
+        '+900$ (Infrastructure Cloud / Serveurs)'
+      ]
     },
     portfolioSection: {
       title: 'Portfolio de Projets',
@@ -225,7 +270,7 @@ export const translations = {
       item2Desc: 'Écosystème d\'exposition de produits interactif pour marques de vêtements.',
       item3Title: 'Studio Arch',
       item3Tag: 'Portfolio d\'Architecture',
-      item3Desc: 'Site d\'entreprise à fort impact visuel pour la présentation de projets d\'architecture.'
+      item3Desc: 'Site d\'entreprise à fort impact visuel pour la presentation de projets d\'architecture.'
     },
     aboutSection: {
       tag: 'Identité d\'Entreprise',
